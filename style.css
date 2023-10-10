@@ -1,0 +1,63 @@
+/* 
+#0A1045 with white text (penn blue)
+#00C2D1 with black text (robin egg blue)
+#F9E900 with black text (yellow)
+#F6AF65 black text (sand brown)
+#ED33B9 black text (shocking pink)
+*/
+* {
+    font-family: 'Oswald', sans-serif;
+}
+
+#flashcard-container {
+    display: flex;
+    width: 75%;
+    background-color: #F9E900;
+    padding: 20px;
+    margin: 50px;
+    justify-content: center;
+    align-items: center;
+    align-content: flex-end;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.question {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: #0A1045;
+    color: white;
+    border-radius: 20px;
+}
+
+.user-input {
+    display: flex;
+    margin: 10px 10px;
+}
+
+#user-input {
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#submit-button {
+    cursor: pointer;
+    background-color: #ED33B9;
+    font-weight: bolder;
+    opacity: 55%;
+}
+
+#submit-button:hover {
+    opacity: 75%;
+}
+
+.answer {
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: #00C2D1;
+    color: black;
+    border-radius: 20px;
+}
