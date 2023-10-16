@@ -33,32 +33,74 @@ The "spread" operator in JavaScript is used to spread the elements of an array o
 
 //document objects
 const flashcard = document.querySelector('[data-container]');
-const question = document.querySelector('[data-question]');
+const questionContainer = document.querySelector('[data-question]');
 const userInput = document.querySelector('[data-user-answer]');
 const submit = document.querySelector('[data-submit]');
 const answer = document.querySelector('[data-answer]');
+const tally = document.querySelector('[data-marks]');
+const nextButton = document.querySelector('[data-next-question');
 
 //score
 let mark = 0;
+
+//object for questions
+let flipQuestions = [
+    {question: 'What keyword is used to declare a variable in JavaScript?',
+     answer1: 'var',
+     answer2: 'let', 
+     answer3: 'const',
+     explanation: 'You can declare a variable in JavaScript using the keywords "var", "let", or "const". For example, to declare a variable called "x" and assign it the value of 5, you can use "var x = 5", "let x = 5", or "const x = 5"'
+    },
+    {question: 'What keyword is used to define a function in JavaScript',
+     answer1: 'function',
+     explanation: 'To write a function in JavaScript, you can use the "function" keyword followed by the function name and parameters in parentheses. For example, to write a function called "add" that takes two parameters and returns their sum, you can use "function add(a, b) { return a + b; }". You can also use arrow syntax like so: "const add = (a, b) => {}',
+    },
+    {question: 'How do you format the "spread" operator in JavaScript?',
+     answer1: '...',
+     explanation: 'The "spread" operator in JavaScript is used to spread the elements of an array or object into another array or object. To use the "spread" operator with an array, you can use three dots followed by the array name.'
+    }
+]
+
+questionContainer.innerText = flipQuestions[0].question;
+
+//function for flipcard
 const flipCard = () => {
     if (userInput.value == '') {
         alert('No answer');
-    }   else if (userInput.value.includes('var') || userInput.value.includes('let') || userInput.value.includes('const') ) {
+    }   else if ((userInput.value.includes(flipQuestions[0].answer1)) || (userInput.value.includes(flipQuestions[0].answer2)) || (userInput.value.includes(flipQuestions[0].answer3))) {
         mark += 1;
+        answer.style.display = 'visible';
+        answer.innerText = flipQuestions[0].explanation;
+        tally.innerText = `Total Points: ${mark}`;
+        //console.log(mark);
         console.log('correct! ' + mark);
         answer.style.visibility = 'visible';
     }   else {
         mark -= 1;
+        console.log(mark);
+        tally.innerText = `Total Points: ${mark}`;
         answer.style.visibility = 'visible';
         console.log('incorrect! Lose a point!')
     }
+
+}
     
+const cueNextQuestion = () => {
+    if (questionContainer.innerText == flipQuestions[0].question) {
+        questionContainer.innerText = flipQuestions[1].question;
+    }   else if (questionContainer.innerText = flipQuestions[1].question) {
+        questionContainer.innerText = flipQuestions[2].question
+    }   else {
+        questionContainer.innerText = `This concludes the test! You have ${mark} points!`;
+    }
+}
     // (userInput.innerText.includes('var' || 'let' || 'const') && answer.style.visibility == 'hidden') {
     //     console.log('this is not visible');
     //     answer.style.visibility = 'visible';
     // }   else {
     //     console.log('no idea');
     // }
-};
+//};
 
 submit.addEventListener('click', flipCard);
+nextButton.addEventListener('click', cueNextQuestion);
